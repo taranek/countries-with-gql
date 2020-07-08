@@ -12,7 +12,7 @@ export type ResponseType = {
   }
 }
 
-const MIN_POPULATION = 80 * 1000000;
+const MIN_POPULATION = process.env.REACT_APP_MIN_POPULATION;
 const countriesListQuery: DocumentNode = gql(`
 {
   countries( where:{population:{gt:${MIN_POPULATION}}}) 
@@ -36,7 +36,6 @@ const countryDetailsQuery = (countryId: string): DocumentNode => gql(`
 class Client implements IClient {
   instance: any
   constructor() {
-    console.log(process.env);
     const URL = process.env.REACT_APP_API_URL;
     const KEY = process.env.REACT_APP_API_KEY;
 
